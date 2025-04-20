@@ -13,7 +13,7 @@ android {
 	defaultConfig {
 		manifestPlaceholders = [oAuthScheme:"moshidon-android-auth"]
 		archivesBaseName = "moshidon"
-		applicationId "org.joinmastodon.android.moshinda"
+		applicationId "org.arslansah.android.moshinda"
 		minSdk 23
 		targetSdk 34
 		versionCode 108
@@ -80,6 +80,7 @@ android {
 			minifyEnabled true
 			shrinkResources true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			signingConfig signingConfigs.debug
 		}
 		debug{
 			debuggable true
@@ -134,7 +135,7 @@ android {
 			setRoot "src/debug"
 		}
 	}
-	namespace 'org.joinmastodon.android'
+	namespace 'org.arslansah.android'
 	lint {
 		abortOnError false
 		checkReleaseBuilds false

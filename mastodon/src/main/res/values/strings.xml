@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name" translatable="false">Mastodon</string>
+	<string name="app_name" translatable="false">Arslanşah</string>
 
 	<string name="log_in">Log in</string>
 	<string name="next">Next</string>
 	<string name="loading_instance">Retrieving server info…</string>
 	<string name="error">Error</string>
-	<string name="not_a_mastodon_instance">%s doesn’t appear to be a Mastodon server.</string>
+	<string name="not_a_mastodon_instance">%s doesn’t appear to be a Arslanşah server.</string>
 	<string name="ok">OK</string>
 	<string name="preparing_auth">Preparing for authentication…</string>
 	<string name="finishing_auth">Finishing authentication…</string>
@@ -156,7 +156,7 @@
 	<string name="mute_user_explain">You will not see their posts. They can still follow you and see your posts and will not know that they are muted.</string>
 	<string name="block_user_explain">You will not see their posts. They will not be able to see your posts or follow you. They will be able to tell that they are blocked.</string>
 	<string name="report_personal_title">Don’t want to see this?</string>
-	<string name="report_personal_subtitle">Here are your options for controlling what you see on Mastodon:</string>
+	<string name="report_personal_subtitle">Here are your options for controlling what you see on Arslanşah:</string>
 	<string name="back">Back</string>
 	<string name="search_communities">Server name or URL</string>
 	<string name="instance_rules_title">Server rules</string>
@@ -191,7 +191,7 @@
 	<string name="notification_type_mention">Mentions</string>
 	<string name="notification_type_poll">Polls</string>
 	<string name="choose_account">Choose account</string>
-	<string name="err_not_logged_in">Please log into Mastodon first</string>
+	<string name="err_not_logged_in">Please log into Arslanşah first</string>
 	<plurals name="cant_add_more_than_x_attachments">
 		<item quantity="one">You can’t add more than %d media attachment</item>
 		<item quantity="other">You can’t add more than %d media attachments</item>
@@ -206,11 +206,11 @@
 	<string name="settings_gif">Play animated avatars and emoji</string>
 	<string name="settings_custom_tabs">Open links in</string>
 	<string name="settings_notifications">Notifications</string>
-	<string name="settings_contribute">Contribute to Mastodon</string>
+	<string name="settings_contribute">Contribute to Arslanşah</string>
 	<string name="settings_tos">Terms of service</string>
 	<string name="settings_privacy_policy">Privacy policy</string>
 	<string name="settings_clear_cache">Clear media cache</string>
-	<string name="settings_app_version">Mastodon for Android v%1$s (%2$d)</string>
+	<string name="settings_app_version">Arslanşah for Android v%1$s (%2$d)</string>
 	<string name="media_cache_cleared">Media cache cleared</string>
 	<string name="confirm_log_out">Log out of %s?</string>
 	<string name="sensitive_content_explain">The author marked this media as sensitive.</string>
@@ -250,8 +250,8 @@
 	<string name="downloading">Downloading…</string>
 	<string name="no_app_to_handle_action">There’s no app to handle this action</string>
 	<string name="local_timeline">Local</string>
-	<string name="trending_posts_info_banner">These are the posts gaining traction across Mastodon.</string>
-	<string name="trending_links_info_banner">These are the news stories getting talked about on Mastodon.</string>
+	<string name="trending_posts_info_banner">These are the posts gaining traction across Arslanşah.</string>
+	<string name="trending_links_info_banner">These are the news stories getting talked about on Arslanşah.</string>
 	<!-- %s is the server domain -->
 	<string name="local_timeline_info_banner">These are all the posts from all users in your server (%s).</string>
 	<string name="recommended_accounts_info_banner">You might like these accounts based on others you follow.</string>
@@ -318,7 +318,7 @@
 	<string name="download_update">Download (%s)</string>
 	<string name="install_update">Install</string>
 	<string name="privacy_policy_title">Your privacy</string>
-	<string name="privacy_policy_subtitle">Although the Mastodon app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for %s, you can go back and pick a different server.</string>
+	<string name="privacy_policy_subtitle">Although the Arslanşah app does not collect any data, the server you sign up through may have a different policy.\n\nIf you disagree with the policy for %s, you can go back and pick a different server.</string>
 	<string name="i_agree">I agree</string>
 	<string name="empty_list">This list is empty</string>
 	<string name="instance_signup_closed">This server does not accept new registrations.</string>
@@ -371,10 +371,10 @@
 	<string name="pick_server">Pick another server</string>
 	<string name="signup_or_login">or</string>
 	<string name="learn_more">Learn more</string>
-	<string name="welcome_to_mastodon">Welcome to Mastodon</string>
-	<string name="welcome_paragraph1">Mastodon is a decentralized social network, meaning no single company controls it. It’s made up of many independently-run servers, all connected together.</string>
+	<string name="welcome_to_mastodon">Welcome to Arslanşah</string>
+	<string name="welcome_paragraph1">Arslanşah is a decentralized social network, meaning no single company controls it. It’s made up of many independently-run servers, all connected together.</string>
 	<string name="what_are_servers">What are servers?</string>
-	<string name="welcome_paragraph2">Every Mastodon account is hosted on a server — each with its own values, rules, &amp; admins. No matter which one you pick, you can follow and interact with people on any server.</string>
+	<string name="welcome_paragraph2">Every Arslanşah account is hosted on a server — each with its own values, rules, &amp; admins. No matter which one you pick, you can follow and interact with people on any server.</string>
 	<string name="opening_link">Opening link…</string>
 	<string name="link_not_supported">This link is not supported in the app</string>
 	<string name="log_out_all_accounts">Log out of all accounts</string>
@@ -425,13 +425,13 @@
 	<string name="report_unfollow_explanation">To not see their posts in your home feed anymore, unfollow them.</string>
 	<string name="muted_user">Muted %s</string>
 	<string name="report_sent_already_blocked">You’ve already blocked this user, so there’s nothing else you need to do while we review your report.</string>
-	<string name="report_personal_already_blocked">You’ve already blocked this user, so there’s nothing else you need to do.\n\nThanks for helping keep Mastodon a safe place for everyone!</string>
+	<string name="report_personal_already_blocked">You’ve already blocked this user, so there’s nothing else you need to do.\n\nThanks for helping keep Arslanşah a safe place for everyone!</string>
 	<string name="blocked_user">Blocked %s</string>
 	<string name="mark_all_notifications_read">Mark all as read</string>
 	<string name="settings_display">Display</string>
 	<string name="settings_filters">Filters</string>
 	<string name="settings_server_explanation">Overview, rules, moderators</string>
-	<!-- %s is the app name (Mastodon, key app_name). I made it a placeholder so everything Just Works™ with forks -->
+	<!-- %s is the app name (Arslanşah, key app_name). I made it a placeholder so everything Just Works™ with forks -->
 	<string name="about_app">About %s</string>
 	<string name="default_post_language">Default post language</string>
 	<string name="settings_alt_text_reminders">Add alt text reminders</string>
@@ -557,9 +557,9 @@
 	<string name="downloading_update">Downloading (%d%%)</string>
 	<!-- Shown like a content warning, %s is the name of the filter -->
 	<string name="post_matches_filter_x">Matches filter “%s”</string>
-	<string name="search_mastodon">Search Mastodon</string>
+	<string name="search_mastodon">Search Arslanşah</string>
 	<string name="clear_all">Clear all</string>
-	<string name="search_open_url">Open URL in Mastodon</string>
+	<string name="search_open_url">Open URL in Arslanşah</string>
 	<string name="posts_matching_hashtag">Posts with “%s”</string>
 	<string name="search_go_to_account">Go to %s</string>
 	<string name="posts_matching_string">Posts with “%s”</string>
@@ -576,7 +576,7 @@
 	<!-- %1$s is the language, %2$s is the name of the translation service -->
 	<string name="post_translated">Translated from %1$s using %2$s</string>
 	<string name="translation_show_original">Show original</string>
-	<string name="translation_failed">Translation failed. Maybe the administrator has not enabled translations on this server or this server is running an older version of Mastodon where translations are not yet supported.</string>
+	<string name="translation_failed">Translation failed. Maybe the administrator has not enabled translations on this server or this server is running an older version of Arslanşah where translations are not yet supported.</string>
 	<string name="settings_privacy">Privacy and reach</string>
 	<string name="settings_discoverable">Feature profile and posts in discovery algorithms</string>
 	<string name="settings_indexable">Include public posts in search results</string>
@@ -657,7 +657,7 @@
 	<string name="non_mutual_text3">Everyone’s conversation style is unique. Be ready to adapt.</string>
 	<string name="make_profile_discoverable">Make my profile discoverable</string>
 	<string name="discoverability">Discoverability</string>
-	<string name="discoverability_help">When you opt into discoverability on Mastodon, your posts may appear in search results and trending.\n\nYour profile may be suggested to people with similar interests to you.\n\nOpting out does not hide your profile if someone searches for you by name.</string>
+	<string name="discoverability_help">When you opt into discoverability on Arslanşah, your posts may appear in search results and trending.\n\nYour profile may be suggested to people with similar interests to you.\n\nOpting out does not hide your profile if someone searches for you by name.</string>
 	<string name="app_version_copied">Version number copied to clipboard</string>
 	<string name="onboarding_recommendations_intro">You curate your own home feed. The more people you follow, the more active and interesting it will be.</string>
 	<string name="onboarding_recommendations_title">Personalize your home feed</string>
@@ -708,7 +708,7 @@
 	<string name="handle_server_explanation_own">Your digital home, where all of your posts live. Don’t like this one? Transfer servers at any time and bring your followers, too.</string>
 	<string name="handle_explanation_own">Because your handle says who you are and where you are, people can interact with you across the social web of &lt;a>ActivityPub-powered platforms&lt;/a>.</string>
 	<string name="what_is_activitypub_title">What’s ActivityPub?</string>
-	<string name="what_is_activitypub">ActivityPub is like the language Mastodon speaks with other social networks.\n\nIt lets you connect and interact with people not just on Mastodon, but across different social apps too.</string>
+	<string name="what_is_activitypub">ActivityPub is like the language Arslanşah speaks with other social networks.\n\nIt lets you connect and interact with people not just on Arslanşah, but across different social apps too.</string>
 	<string name="handle_copied">Handle copied to clipboard.</string>
 	<string name="qr_code">QR code</string>
 	<string name="scan_qr_code">Scan QR code</string>
@@ -717,8 +717,8 @@
 	<string name="image_saved">Image saved.</string>
 	<string name="video_saved">Video saved.</string>
 	<string name="view_file">View</string>
-	<string name="share_sheet_preview_profile">%s on Mastodon</string>
-	<string name="share_sheet_preview_post">%1$s on Mastodon: “%2$s”</string>
+	<string name="share_sheet_preview_profile">%s on Arslanşah</string>
+	<string name="share_sheet_preview_post">%1$s on Arslanşah: “%2$s”</string>
 	<string name="copy_profile_link">Copy link to profile</string>
 	<string name="in_app_browser">In-app browser</string>
 	<string name="system_browser">System browser</string>

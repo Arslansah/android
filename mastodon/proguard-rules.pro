@@ -21,17 +21,17 @@
 #-renamesourcefileattribute SourceFile
 
 # Keep all model classes as they're used with gson and their names are shown in errors
--keep public class org.joinmastodon.android.model.**{
+-keep public class org.arslansah.android.model.**{
 	<fields>;
 }
 
 # Inner classes in api requests are used with gson
--keepclassmembers class org.joinmastodon.android.api.**$*{
+-keepclassmembers class org.arslansah.android.api.**$*{
 	*;
 }
 
 # i don't know how proguard works
--keep class org.joinmastodon.android.** { *; }
+-keep class org.arslansah.android.** { *; }
 
 # Keep all enums for debugging purposes
 -keepnames public enum * {
@@ -49,8 +49,10 @@
 -keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
 -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
+-dontwarn android.app.BroadcastOptions
+
 #-keep class javax.** { *; }
--keep class org.joinmastodon.android.** { *; }
+-keep class org.arslansah.android.** { *; }
 
 # Parceler library
 -keep interface org.parceler.Parcel
@@ -80,6 +82,7 @@
 -keep class * implements com.google.gson.JsonDeserializer
 
 # Prevent R8 from leaving Data object members always null
+
 -keepclassmembers,allowobfuscation class * {
   @com.google.gson.annotations.SerializedName <fields>;
 }
@@ -89,6 +92,5 @@
 -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
 ##---------------End: proguard configuration for Gson  ----------
-
 
 -dontobfuscate

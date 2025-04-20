@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.joinmastodon.android.ui.views.SizeListenerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.arslansah.android.ui.views.SizeListenerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
@@ -15,67 +15,6 @@
 		android:layout_gravity="top"
 		android:transformPivotY="0px"
 		android:background="#50D5ED"/>
-
-	<FrameLayout
-		android:id="@+id/art_container"
-		android:layout_width="360dp"
-		android:layout_height="640dp"
-		android:layout_gravity="center"
-		tools:ignore="rtlHardcoded">
-		
-		<ImageView
-			android:id="@+id/art_clouds"
-			android:layout_width="414dp"
-			android:layout_height="541dp"
-			android:layout_marginTop="37dp"
-			android:layout_marginLeft="-27dp"
-			android:layout_gravity="top|left"
-			android:alpha="0.3"
-			android:importantForAccessibility="no"
-			android:src="@drawable/splash_art_layer0"/>
-
-		<ImageView
-			android:id="@+id/art_plane_elephant"
-			android:layout_width="245.64dp"
-			android:layout_height="72.65dp"
-			android:layout_marginLeft="-50.775dp"
-			android:layout_marginTop="184.12dp"
-			android:layout_gravity="left|top"
-			android:alpha="0.3"
-			android:importantForAccessibility="no"
-			android:src="@drawable/splash_art_layer4"/>
-
-		<ImageView
-			android:id="@+id/art_right_hill"
-			android:layout_width="150.84dp"
-			android:layout_height="176.44dp"
-			android:layout_gravity="top|left"
-			android:layout_marginLeft="278dp"
-			android:layout_marginTop="244dp"
-			android:importantForAccessibility="no"
-			android:src="@drawable/splash_art_layer1"/>
-
-		<ImageView
-			android:id="@+id/art_left_hill"
-			android:layout_width="197.2dp"
-			android:layout_height="153.61dp"
-			android:layout_gravity="top|left"
-			android:layout_marginTop="252dp"
-			android:layout_marginLeft="-44dp"
-			android:importantForAccessibility="no"
-			android:src="@drawable/splash_art_layer2"/>
-
-		<ImageView
-			android:id="@+id/art_center_hill"
-			android:layout_width="400dp"
-			android:layout_height="346dp"
-			android:layout_gravity="top|left"
-			android:layout_marginTop="240dp"
-			android:layout_marginLeft="-20dp"
-			android:importantForAccessibility="no"
-			android:src="@drawable/splash_art_layer3"/>
-
-	</FrameLayout>
 
 	<View
 		android:id="@+id/green_fill"
@@ -108,7 +47,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
 
-			<org.joinmastodon.android.ui.views.ProgressBarButton
+			<org.arslansah.android.ui.views.ProgressBarButton
 				android:id="@+id/btn_join_default_server"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -212,4 +151,4 @@
 
 	</LinearLayout>
 
-</org.joinmastodon.android.ui.views.SizeListenerFrameLayout>
+</org.arslansah.android.ui.views.SizeListenerFrameLayout>

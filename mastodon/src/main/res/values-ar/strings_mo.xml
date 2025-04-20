@@ -36,4 +36,6 @@
     <string name="mo_emoji_recent">المُستخدَمة حديثًا</string>
     <string name="mo_muted_accounts">الحسابات المكتومة</string>
     <string name="mo_blocked_accounts">الحسابات المحظورة</string>
+    <string name="mo_app_url">bassam.social</string>
+	<string name="mo_app_name">آرسلان شاه</string>
 </resources>

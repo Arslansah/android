@@ -1,4 +1,4 @@
-package org.joinmastodon.android.updater;
+package org.arslansah.android.updater;
 
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -19,13 +19,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import org.joinmastodon.android.BuildConfig;
-import org.joinmastodon.android.E;
-import org.joinmastodon.android.GlobalUserPreferences;
-import org.joinmastodon.android.MastodonApp;
-import org.joinmastodon.android.R;
-import org.joinmastodon.android.api.MastodonAPIController;
-import org.joinmastodon.android.events.SelfUpdateStateChangedEvent;
+import org.arslansah.android.BuildConfig;
+import org.arslansah.android.E;
+import org.arslansah.android.GlobalUserPreferences;
+import org.arslansah.android.MastodonApp;
+import org.arslansah.android.R;
+import org.arslansah.android.api.MastodonAPIController;
+import org.arslansah.android.events.SelfUpdateStateChangedEvent;
 
 import java.io.File;
 import java.time.Instant;

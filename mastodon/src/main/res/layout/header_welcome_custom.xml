@@ -29,25 +29,6 @@
 		android:layout_marginTop="16dp"
 		android:background="?attr/colorM3OutlineVariant"/>
 
-	<EditText
-		android:id="@+id/search_edit"
-		android:layout_width="match_parent"
-		android:layout_height="56dp"
-		android:layout_marginTop="16dp"
-		android:layout_marginBottom="8dp"
-		android:layout_marginHorizontal="16dp"
-		android:inputType="textUri|textNoSuggestions"
-		android:singleLine="true"
-		android:imeOptions="actionGo"
-		android:drawableStart="@drawable/ic_fluent_globe_20_regular"
-		android:drawablePadding="12dp"
-		android:drawableTint="?android:textColorSecondary"
-		android:background="@drawable/bg_search_field"
-		android:paddingHorizontal="16dp"
-		android:elevation="0dp"
-		android:hint="@string/sk_example_domain"/>
-
-
 	<ViewStub
 		android:layout="?errorViewLayout"
 		android:layout_width="match_parent"
