@@ -104,4 +104,5 @@
     <string name="export_settings_fail">Не удалось экспортировать настройка</string>
     <string name="export_settings_title">Экспортировать настройки</string>
     <string name="import_settings_title">Импортировать настройки</string>
+    <string name="mo_app_name">Арсланшах</string>
 </resources>
