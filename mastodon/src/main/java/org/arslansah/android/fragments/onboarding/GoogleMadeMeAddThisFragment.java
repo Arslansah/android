@@ -1,5 +1,6 @@
 package org.arslansah.android.fragments.onboarding;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -80,6 +81,7 @@ public class GoogleMadeMeAddThisFragment extends ToolbarFragment{
 		}
 	}
 
+	@SuppressLint("StringFormatInvalid")
 	@Override
 	public View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View view=inflater.inflate(R.layout.fragment_onboarding_rules, container, false);
@@ -100,7 +102,7 @@ public class GoogleMadeMeAddThisFragment extends ToolbarFragment{
 		buttonBar=view.findViewById(R.id.button_bar);
 
 		Button backBtn=view.findViewById(R.id.btn_back);
-		backBtn.setText(getString(R.string.server_policy_disagree, instance.uri));
+		backBtn.setText(getString(R.string.server_rules_disagree, instance.uri));
 		backBtn.setOnClickListener(v->{
 			setResult(false, null);
 			Nav.finish(this);

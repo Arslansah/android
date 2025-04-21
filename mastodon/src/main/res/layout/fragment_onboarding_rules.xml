@@ -15,7 +15,7 @@
 		android:id="@+id/button_bar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:visibility="gone"
+		android:visibility="visible"
 		android:orientation="vertical">
 
 		<Button
@@ -38,7 +38,6 @@
 			android:layout_marginBottom="16dp"
 			android:minWidth="145dp"
 			style="@style/Widget.Mastodon.M3.Button.Filled"
-			android:visibility="gone"
 			android:text="@string/i_agree" />
 
 	</LinearLayout>

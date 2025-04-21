@@ -15,12 +15,15 @@ import android.widget.TextView;
 import org.arslansah.android.R;
 import org.arslansah.android.api.MastodonAPIController;
 import org.arslansah.android.api.MastodonErrorResponse;
+import org.arslansah.android.api.requests.accounts.CheckInviteLink;
 import org.arslansah.android.api.requests.instance.GetInstance;
 import org.arslansah.android.fragments.MastodonRecyclerFragment;
 import org.arslansah.android.model.Instance;
 import org.arslansah.android.model.catalog.CatalogInstance;
 import org.arslansah.android.ui.M3AlertDialogBuilder;
 import org.arslansah.android.ui.utils.UiUtils;
+import org.arslansah.android.ui.views.ProgressBarButton;
+import org.parceler.Parcels;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -44,6 +47,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.utils.BindableViewHolder;
@@ -56,7 +60,9 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 	protected RecyclerView.Adapter adapter;
 	protected MergeRecyclerAdapter mergeAdapter;
 	protected CatalogInstance chosenInstance;
+	private String chosenDefaultServer;
 	protected Button nextButton;
+	private ProgressBarButton defaultServerButton;
 	protected EditText searchEdit;
 	protected Runnable searchDebouncer=this::onSearchChangedDebounced;
 	protected String currentSearchQuery;
@@ -68,6 +74,7 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 	protected GetInstance loadingInstanceRequest;
 	protected Call loadingInstanceRedirectRequest;
 	protected ProgressDialog instanceProgressDialog;
+	private ProgressDialog instanceLoadingProgress;
 	protected HashMap<String, String> redirects=new HashMap<>();
 	protected HashMap<String, String> redirectsInverse=new HashMap<>();
 	protected boolean isSignup;
@@ -381,6 +388,8 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 		nextButton.setOnClickListener(this::onNextClick);
 		nextButton.setEnabled(chosenInstance!=null);
 		buttonBar=view.findViewById(R.id.button_bar);
+		defaultServerButton = contentView.findViewById(R.id.btn_join_default_server);
+		defaultServerButton.setOnClickListener(this::onJoinDefaultServerClick);
 		setRefreshEnabled(false);
 	}
 
@@ -395,5 +404,51 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 				loadInstanceInfo(domain, false);
 			}
 		}
+	}
+
+	private void onJoinDefaultServerClick(View v){
+		System.out.println("Butona tıklandı.");
+		chosenDefaultServer = getString(R.string.mo_app_url);
+
+		instanceLoadingProgress=new ProgressDialog(getActivity());
+		instanceLoadingProgress.setCancelable(false);
+		instanceLoadingProgress.setMessage(getString(R.string.loading_instance));
+		instanceLoadingProgress.show();
+
+		proceedWithServerDomain(chosenDefaultServer);
+	}
+
+	private void proceedWithServerDomain(String domain){
+		new GetInstance()
+				.setCallback(new Callback<>(){
+					@Override
+					public void onSuccess(Instance result){
+						if(getActivity()==null)
+							return;
+						instanceLoadingProgress.dismiss();
+						instanceLoadingProgress=null;
+						if(!result.registrations){
+							new M3AlertDialogBuilder(getActivity())
+									.setTitle(R.string.error)
+									.setMessage(R.string.instance_signup_closed)
+									.setPositiveButton(R.string.ok, null)
+									.show();
+							return;
+						}
+						Bundle args=new Bundle();
+						args.putParcelable("instance", Parcels.wrap(result));
+						Nav.go(getActivity(), InstanceRulesFragment.class, args);
+					}
+
+					@Override
+					public void onError(ErrorResponse error){
+						if(getActivity()==null)
+							return;
+						instanceLoadingProgress.dismiss();
+						instanceLoadingProgress=null;
+						error.showToast(getActivity());
+					}
+				})
+				.execNoAuth(domain);
 	}
 }

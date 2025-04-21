@@ -16,13 +16,6 @@
 		android:layout_marginVertical="12dp"
 		android:text="@string/sk_welcome_title" />
 
-	<TextView
-		style="@style/m3_body_large"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:paddingHorizontal="16dp"
-		android:text="@string/mo_welcome_text" />
-
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="0.5dp"
