@@ -20,7 +20,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="0.5dp"
 		android:layout_marginTop="16dp"
-		android:background="?attr/colorM3OutlineVariant"/>
+		android:background="?attr/colorM3OutlineVariant" />
 
 	<ViewStub
 		android:layout="?errorViewLayout"

@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.api.SimpleCallback;
@@ -54,7 +55,7 @@ public class OnboardingFollowSuggestionsFragment extends BaseAccountListFragment
 		buttonBar=view.findViewById(R.id.button_bar);
 
 		view.findViewById(R.id.btn_next).setOnClickListener(UiUtils.rateLimitedClickListener(this::onFollowAllClick));
-//		view.findViewById(R.id.btn_skip).setOnClickListener(UiUtils.rateLimitedClickListener(v->proceed()));
+		view.findViewById(R.id.btn_skip).setOnClickListener(UiUtils.rateLimitedClickListener(v->proceed()));
 	}
 
 	@Override
@@ -160,9 +161,9 @@ public class OnboardingFollowSuggestionsFragment extends BaseAccountListFragment
 	}
 
 	private void proceed(){
-//		Bundle args=new Bundle();
-//		args.putString("account", accountID);
-//		Nav.go(getActivity(), OnboardingProfileSetupFragment.class, args);
+		Bundle args=new Bundle();
+		args.putString("account", accountID);
+		Nav.go(getActivity(), OnboardingProfileSetupFragment.class, args);
 	}
 
 	@Override

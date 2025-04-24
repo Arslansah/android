@@ -50,16 +50,16 @@
 			android:layout_margin="16dp"
 			android:layout_weight="1"
 			android:text="@string/follow_all" />
-<!--		<Button-->
-<!--			android:id="@+id/btn_skip"-->
-<!--			android:layout_width="wrap_content"-->
-<!--			android:layout_height="wrap_content"-->
-<!--			android:layout_marginStart="16dp"-->
-<!--			android:layout_marginEnd="16dp"-->
-<!--			android:layout_marginTop="8dp"-->
-<!--			android:layout_marginBottom="16dp"-->
-<!--			style="@style/Widget.Mastodon.M3.Button.Filled"-->
-<!--			android:text="@string/skip"/>-->
+		<Button
+			android:id="@+id/btn_skip"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="8dp"
+			android:layout_marginBottom="16dp"
+			style="@style/Widget.Mastodon.M3.Button.Filled"
+			android:text="@string/skip"/>
 
 	</LinearLayout>
 
