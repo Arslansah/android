@@ -61,8 +61,9 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 	protected MergeRecyclerAdapter mergeAdapter;
 	protected CatalogInstance chosenInstance;
 	private String chosenDefaultServer;
+	protected TextView selectedInstance;
 	protected Button nextButton;
-	private ProgressBarButton defaultServerButton;
+	protected ProgressBarButton defaultServerButton;
 	protected EditText searchEdit;
 	protected Runnable searchDebouncer=this::onSearchChangedDebounced;
 	protected String currentSearchQuery;
@@ -113,8 +114,12 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 
 	protected void onSearchChangedDebounced(){
 		currentSearchQuery=getString(R.string.mo_app_url);
-		updateFilteredList();
-		loadInstanceInfo(getCurrentSearchQuery(), false);
+		System.out.println(9.0);
+		System.out.println(loadingInstanceDomain);
+//		currentSearchQuery=searchEdit.getText().toString().toLowerCase().trim();
+//		currentSearchQueryButWithCasePreserved=searchEdit.getText().toString().trim();
+//		updateFilteredList();
+//		loadInstanceInfo(getCurrentSearchQuery(), false);
 	}
 
 	protected List<CatalogInstance> sortInstances(List<CatalogInstance> result){
@@ -135,6 +140,8 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 	}
 
 	protected String getCurrentSearchQuery(){
+		System.out.println(9.0);
+		System.out.println(currentSearchQuery.toString());
 		String[] parts=currentSearchQuery.split("@");
 		return parts.length>0 ? parts[parts.length-1] : "";
 	}
@@ -390,6 +397,8 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 		buttonBar=view.findViewById(R.id.button_bar);
 		defaultServerButton = contentView.findViewById(R.id.btn_join_default_server);
 		defaultServerButton.setOnClickListener(this::onJoinDefaultServerClick);
+		defaultServerButton.setEnabled(chosenInstance!=null);
+		selectedInstance=view.findViewById(R.id.select_instance_domain);
 		setRefreshEnabled(false);
 	}
 
@@ -407,15 +416,12 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 	}
 
 	private void onJoinDefaultServerClick(View v){
-		System.out.println("Butona tıklandı.");
-		chosenDefaultServer = getString(R.string.mo_app_url);
-
 		instanceLoadingProgress=new ProgressDialog(getActivity());
 		instanceLoadingProgress.setCancelable(false);
 		instanceLoadingProgress.setMessage(getString(R.string.loading_instance));
 		instanceLoadingProgress.show();
 
-		proceedWithServerDomain(chosenDefaultServer);
+		proceedWithServerDomain(chosenInstance.domain);
 	}
 
 	private void proceedWithServerDomain(String domain){

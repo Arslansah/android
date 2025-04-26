@@ -1,5 +1,6 @@
 package org.arslansah.android.fragments.onboarding;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Build;
@@ -7,11 +8,15 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Space;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -22,10 +27,19 @@ import org.arslansah.android.R;
 import org.arslansah.android.api.session.AccountSessionManager;
 import org.arslansah.android.model.Instance;
 import org.arslansah.android.model.catalog.CatalogInstance;
+import org.arslansah.android.model.viewmodel.ListItem;
 import org.arslansah.android.ui.BetterItemAnimator;
+import org.arslansah.android.ui.M3AlertDialogBuilder;
 import org.arslansah.android.ui.utils.UiUtils;
+import org.arslansah.android.ui.viewcontrollers.ComposeLanguageAlertViewController;
+import org.arslansah.android.utils.MastodonLanguage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 import me.grishka.appkit.FragmentStackActivity;
@@ -144,17 +158,76 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 		((ImageView) headerView.findViewById(R.id.avatar)).setImageDrawable(getActivity().getDrawable(R.mipmap.ic_launcher));
 		((FragmentStackActivity) getActivity()).invalidateSystemBarColors(this);
 
-//		searchEdit.postDelayed(searchDebouncer, 300);
-		headerView.postDelayed(searchDebouncer, 1);
+		ArrayList<String> langs = new ArrayList<>();
+		langs.add("ar");
+		langs.add("tr");
+
+		langs.remove(Locale.getDefault().getLanguage());
+		langs.add(0, Locale.getDefault().getLanguage());
+
+		Spinner spin = headerView.findViewById(R.id.select_lang);
 
 		mergeAdapter=new MergeRecyclerAdapter();
 		mergeAdapter.addAdapter(new SingleViewRecyclerAdapter(headerView));
 		mergeAdapter.addAdapter(adapter=new InstancesAdapter());
-		View spacer = new Space(getActivity());
-		spacer.setMinimumHeight(V.dp(8));
-		mergeAdapter.addAdapter(new SingleViewRecyclerAdapter(spacer));
+
+
+		Map<String, List<Servers>> servers = new HashMap<>();
+		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("bassam.social", true));
+		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("seewaan.com", false));
+		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("ummah.ps", false));
+//		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("ummalife.ps"));
+		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("mastodon.tn", false));
+		servers.computeIfAbsent("tr", k -> new ArrayList<>()).add(new Servers("arslansah.com.tr", true));
+
+		if(spin != null){
+			ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, langs);
+			spin.setAdapter(arrayAdapter);
+		}
+
+		spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
+//				mergeAdapter=new MergeRecyclerAdapter();
+//				mergeAdapter.addAdapter(new SingleViewRecyclerAdapter(headerView));
+				mergeAdapter.removeAdapter(adapter);
+				filteredData.clear();
+				String selectedValue = adapterView.getItemAtPosition(i).toString();
+
+				String lowerSelectedValue = selectedValue.toLowerCase();
+				var serversArray = servers.get(lowerSelectedValue);
+
+
+
+				for (Servers server : serversArray) {
+					headerView.postDelayed(searchDebouncer, 300);
+					CatalogInstance newItem = new CatalogInstance();
+					newItem.normalizedDomain = server.domain.toString();
+					newItem.domain = server.domain.toString();
+					newItem.language = selectedValue.toUpperCase();
+					newItem.recommend = server.recommend;
+					filteredData.add(newItem);
+					if(serversArray.size() == 1){
+						nextButton.setEnabled(true);
+						selectedInstance.setText(server.domain.toString());
+						defaultServerButton.setEnabled(true);
+					}else{
+						nextButton.setEnabled(false);
+						selectedInstance.setText("");
+						defaultServerButton.setEnabled(false);
+					};
+				};
+				mergeAdapter.addAdapter(adapter);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterView){
+			}
+		});
+
 		return mergeAdapter;
 	}
+
 
 	private class InstancesAdapter extends UsableRecyclerView.Adapter<InstanceViewHolder> {
 		public InstancesAdapter(){
@@ -164,19 +237,25 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 		@NonNull
 		@Override
 		public InstanceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+			System.out.println(3.0);
 			return new InstanceViewHolder();
 		}
 
 		@Override
 		public void onBindViewHolder(InstanceViewHolder holder, int position){
+
 			holder.bind(filteredData.get(position));
 			chosenInstance = filteredData.get(position);
-			if (chosenInstance != fakeInstance) nextButton.setEnabled(true);
+			System.out.println(2.1);
+			System.out.println(position);
+			System.out.println(chosenInstance);
+//			if (chosenInstance != fakeInstance) nextButton.setEnabled(true);
 			super.onBindViewHolder(holder, position);
 		}
 
 		@Override
 		public int getItemCount(){
+			System.out.println(3.2);
 			return filteredData.size();
 		}
 
@@ -186,14 +265,30 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 		}
 	}
 
+	class Servers {
+		String domain;
+		boolean recommend;
+
+		Servers(String domain, Boolean recommend){
+			this.domain = domain;
+			this.recommend = recommend;
+		};
+
+		@Override
+		public String toString() {
+			return domain;
+		}
+	};
+
 	private class InstanceViewHolder extends BindableViewHolder<CatalogInstance> implements UsableRecyclerView.Clickable{
-		private final TextView title, description, userCount, lang;
+		private final TextView title, description, userCount, recommend, lang;
 
 		public InstanceViewHolder(){
 			super(getActivity(), R.layout.item_instance_custom, list);
 			title=findViewById(R.id.title);
 			description=findViewById(R.id.description);
 			userCount=findViewById(R.id.user_count);
+			recommend=findViewById(R.id.recommend);
 			lang=findViewById(R.id.lang);
 			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.N){
 					UiUtils.fixCompoundDrawableTintOnAndroid6(userCount);
@@ -204,6 +299,7 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 		@Override
 		public void onBind(CatalogInstance item){
 			title.setText(item.normalizedDomain);
+			System.out.println(title.getText());
 			description.setText(item.description);
 			if (item == fakeInstance) {
 				userCount.setVisibility(View.GONE);
@@ -214,15 +310,34 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 				userCount.setText(UiUtils.abbreviateNumber(item.totalUsers));
 				lang.setText(item.language.toUpperCase());
 			}
-		}
+			System.out.println(item);
+			if(item.recommend){
+				recommend.setVisibility(View.VISIBLE);
+				recommend.setText("Önerilen");
+			};
+		};
 
 		@Override
 		public void onClick(){
-//			if(chosenInstance==null)
-//					nextButton.setEnabled(true);
-//			chosenInstance=item;
-//			loadInstanceInfo(chosenInstance.domain, false);
+			chosenInstance=item;
+
+			nextButton.setEnabled(true);
+			selectedInstance.setText(item.domain.toString());
+			defaultServerButton.setEnabled(true);
+
+			loadInstanceInfo(item.domain, false);
 //			onNextClick(null);
 		}
 	}
+
+//	private void onJoinDefaultServerClick(View v){
+//		chosenDefaultServer = getString(R.string.mo_app_url);
+//
+//		instanceLoadingProgress=new ProgressDialog(getActivity());
+//		instanceLoadingProgress.setCancelable(false);
+//		instanceLoadingProgress.setMessage(getString(R.string.loading_instance));
+//		instanceLoadingProgress.show();
+//
+//		proceedWithServerDomain(chosenDefaultServer);
+//	}
 }

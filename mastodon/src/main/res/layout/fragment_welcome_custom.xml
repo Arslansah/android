@@ -46,6 +46,30 @@
 		android:orientation="vertical"
 		android:elevation="0dp">
 
+		<RelativeLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/bordered_rectangle_rounded_corners">
+			<TextView
+				android:id="@+id/select_instance_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textStyle="bold"
+				android:layout_marginTop="2dp"
+				android:layout_centerVertical="true"
+				android:layout_marginStart="12dp"
+				android:layout_marginEnd="4dp"
+				android:layout_alignParentStart="true"
+				android:text="@string/selected_instance"/>
+			<TextView
+				android:id="@+id/select_instance_domain"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_toEndOf="@+id/select_instance_title"
+				android:text="arslansah.com.tr"/>
+		</RelativeLayout>
+
 		<Button
 			style="@style/Widget.Mastodon.M3.Button.Filled"
 			android:id="@+id/btn_next"
@@ -54,7 +78,7 @@
 			android:layout_marginLeft="16dp"
 			android:layout_marginRight="16dp"
 			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
+			android:layout_marginBottom="2dp"
 			android:minWidth="145dp"
 			android:text="@string/log_in" />
 		<org.arslansah.android.ui.views.ProgressBarButton
@@ -63,7 +87,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="16dp"
 			android:layout_marginRight="16dp"
-			android:layout_marginTop="8dp"
+			android:layout_marginTop="2dp"
 			android:layout_marginBottom="8dp"
 			android:minWidth="145dp"
 			style="@style/Widget.Mastodon.M3.Button.Filled"

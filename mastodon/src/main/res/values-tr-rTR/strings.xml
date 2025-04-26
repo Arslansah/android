@@ -678,5 +678,7 @@ Ne kadar çok kişiyi takip ederseniz, o kadar aktif ve ilginç olacaktır.</str
 	<string name="server">Sunucu</string>
 	<string name="handle_explanation">Tanıtıcılar bir kişinin kim olduğunu ve nerede olduğunu söylediği için, &lt;a&gt;ActivityPub destekli platformların&lt;/a&gt; sosyal ağındaki insanlarla etkileşime geçebilirsiniz.</string>
 	<string name="handle_explanation_own">Tanıtıcılar bir kişinin kim olduğunu ve nerede olduğunu söylediği için, &lt;a&gt;ActivityPub destekli platformların&lt;/a&gt; sosyal ağındaki insanlarla etkileşime geçebilirsiniz.</string>
+	<string name="selected_instance">Seçilen Sunucu:</string>
+	<string name="recommended">Önerilen</string>
 	<!-- Shown on a button that saves a file, after it was successfully saved -->
 </resources>

@@ -26,8 +26,7 @@
     <string name="mo_disable_relocate_publish_button_to_enable_customization">دکمه جابه‌جایی انتشار را غیرفعال کنید تا امکان سفارشی‌سازی فراهم شود</string>
     <string name="mo_poll_option_add">افزودن گزینه نظرسنجی جدید</string>
     <string name="mo_enable_dividers">نمایش تقسیم کننده‌های پست</string>
-	<string name="mo_app_url">bassam.social</string>
-    <string name="mo_color_palette_nord">نورد</string>
+	<string name="mo_color_palette_nord">نورد</string>
     <string name="mo_color_palette_black_and_white">سیاه و سفید</string>
     <string name="mo_add_custom_server_local_timeline">خط زمانی محلی سرور سفارشی را اضافه کنید</string>
     <string name="mo_severity_suspend">مسدود شد</string>

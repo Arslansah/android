@@ -66,8 +66,7 @@
     <string name="mo_notification_action_replied">تم الرد بنجاح على منشور %s</string>
     <string name="mo_disable_relocate_publish_button_to_enable_customization">تعطيل ”نقل زر النشر“ للسماح بالتخصيص</string>
     <string name="mo_enable_dividers">عرض فواصل المنشورات</string>
-    <string name="mo_app_url">bassam.social</string>
-    <string name="mo_color_palette_nord">نورد</string>
+	<string name="mo_color_palette_nord">نورد</string>
     <string name="mo_setting_true_black_summary">قد يوفر الطاقة على شاشات AMOLED</string>
     <string name="mo_clear_recent_emoji">مسح الرموز التعبيرية المستخدَمة مؤخرًا</string>
     <string name="mo_muted_conversation_successfully">تم كتم المحادثة بنجاح</string>

@@ -730,7 +730,6 @@
 	<string name="manage_list_members">إدارة قائمة الأعضاء</string>
 	<string name="list_no_members">لا أعضاء حتى الآن</string>
 	<string name="list_find_users">البحث عن مستخدمين للإضافة</string>
-    <string name="mo_app_url">bassam.social</string>
-	<string name="mo_app_name">آرسلان شاه</string>
+    <string name="mo_app_name">آرسلان شاه</string>
 	<!-- %s is a time interval ("5 months") -->
 </resources>

@@ -60,7 +60,6 @@ public class MastodonAPIController{
 			.build();
 
 	private AccountSession session;
-	private static List<String> badDomains = new ArrayList<>();
 
 	static{
 		thread.start();

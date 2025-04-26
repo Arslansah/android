@@ -1,6 +1,7 @@
 package org.arslansah.android.model.catalog;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,6 +26,7 @@ public class CatalogInstance extends BaseModel{
 	public List<String> categories;
 	public String proxiedThumbnail;
 	public int totalUsers;
+	public boolean recommend;
 	public int lastWeekUsers;
 	public boolean approvalRequired;
 	public String language;
@@ -62,6 +64,7 @@ public class CatalogInstance extends BaseModel{
 				", categories="+categories+
 				", proxiedThumbnail='"+proxiedThumbnail+'\''+
 				", totalUsers="+totalUsers+
+				", recommend="+recommend+
 				", lastWeekUsers="+lastWeekUsers+
 				", approvalRequired="+approvalRequired+
 				", language='"+language+'\''+

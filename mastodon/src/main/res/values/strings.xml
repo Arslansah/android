@@ -730,4 +730,8 @@
 	<string name="unpin_post">Unpin from profile</string>
 	<string name="post_pinned">Post has been pinned</string>
 	<string name="post_unpinned">Post has been unpinned</string>
+
+<!--	ARSLANŞAH    -->
+	<string name="selected_instance">Selected Instance:</string>
+	<string name="recommended">Recommended</string>
 </resources>
