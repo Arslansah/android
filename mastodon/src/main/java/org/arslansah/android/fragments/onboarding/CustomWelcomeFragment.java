@@ -2,6 +2,7 @@ package org.arslansah.android.fragments.onboarding;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,20 +10,27 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.HeaderViewListAdapter;
 import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.JsonElement;
+
+import org.arslansah.android.GlobalUserPreferences;
 import org.arslansah.android.R;
 import org.arslansah.android.api.session.AccountSessionManager;
 import org.arslansah.android.model.Instance;
@@ -34,6 +42,7 @@ import org.arslansah.android.ui.utils.UiUtils;
 import org.arslansah.android.ui.viewcontrollers.ComposeLanguageAlertViewController;
 import org.arslansah.android.utils.MastodonLanguage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,6 +50,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 import me.grishka.appkit.FragmentStackActivity;
 import me.grishka.appkit.utils.BindableViewHolder;
@@ -48,6 +58,7 @@ import me.grishka.appkit.utils.MergeRecyclerAdapter;
 import me.grishka.appkit.utils.SingleViewRecyclerAdapter;
 import me.grishka.appkit.utils.V;
 import me.grishka.appkit.views.UsableRecyclerView;
+import okhttp3.internal.http2.Header;
 
 public class CustomWelcomeFragment extends InstanceCatalogFragment {
 	private View headerView;
@@ -158,53 +169,122 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 		((ImageView) headerView.findViewById(R.id.avatar)).setImageDrawable(getActivity().getDrawable(R.mipmap.ic_launcher));
 		((FragmentStackActivity) getActivity()).invalidateSystemBarColors(this);
 
+		Button changeLanguageButton = headerView.findViewById(R.id.instance_select_language_button);
+		TextView languageText = headerView.findViewById(R.id.instance_select_language);
+
 		ArrayList<String> langs = new ArrayList<>();
-		langs.add("ar");
-		langs.add("tr");
+		ArrayList<String> langsCode = new ArrayList<>();
+		ArrayList<String> langsId = new ArrayList<>();
 
-		langs.remove(Locale.getDefault().getLanguage());
-		langs.add(0, Locale.getDefault().getLanguage());
+		var languages = MastodonLanguage.allLanguages;
+		int languagesCount = languages.size();
 
-		Spinner spin = headerView.findViewById(R.id.select_lang);
+		Map<String, List<Servers>> servers = new HashMap<>();
+		for(int i = 0; i < languagesCount; i++){
+			String langCode = languages.get(i).getLanguage();
+			String langTitle = languages.get(i).getLanguageName();
+			String langDisplay = languages.get(i).getDefaultName();
+
+			if(langCode.equals("ar")){
+				String title = 	String.format("%s (%s)", langDisplay, langTitle);
+				langs.add(title);
+				langsId.add(String.valueOf(i));
+				langsCode.add(langCode);
+
+				servers.computeIfAbsent(String.valueOf(i), k -> new ArrayList<>()).add(new Servers("bassam.social", true));
+				servers.computeIfAbsent(String.valueOf(i), k -> new ArrayList<>()).add(new Servers("seewaan.com", false));
+				servers.computeIfAbsent(String.valueOf(i), k -> new ArrayList<>()).add(new Servers("ummah.ps", false));
+//				servers.computeIfAbsent("AR", k -> new ArrayList<>()).add(new Servers("ummalife.ps"));
+				servers.computeIfAbsent(String.valueOf(i), k -> new ArrayList<>()).add(new Servers("mastodon.tn", false));
+			}else if(langCode.equals("tr")){
+				String title = 	String.format("%s (%s)", langDisplay, langTitle);
+				langs.add(title);
+				langsCode.add(langCode);
+				langsId.add(String.valueOf(i));
+
+				servers.computeIfAbsent(String.valueOf(i), k -> new ArrayList<>()).add(new Servers("arslansah.com.tr", true));
+			};
+		};
+		String localeLang = Locale.getDefault().getLanguage().toLowerCase();
+		if(!langsCode.equals(localeLang)){
+			localeLang = "tr";
+		}
+
+		String[] langsArray = langs.toArray(new String[0]);
+		String[] langsIdArray = langsId.toArray(new String[0]);
+
 
 		mergeAdapter=new MergeRecyclerAdapter();
 		mergeAdapter.addAdapter(new SingleViewRecyclerAdapter(headerView));
 		mergeAdapter.addAdapter(adapter=new InstancesAdapter());
 
-
-		Map<String, List<Servers>> servers = new HashMap<>();
-		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("bassam.social", true));
-		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("seewaan.com", false));
-		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("ummah.ps", false));
-//		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("ummalife.ps"));
-		servers.computeIfAbsent("ar", k -> new ArrayList<>()).add(new Servers("mastodon.tn", false));
-		servers.computeIfAbsent("tr", k -> new ArrayList<>()).add(new Servers("arslansah.com.tr", true));
-
-		if(spin != null){
-			ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, langs);
-			spin.setAdapter(arrayAdapter);
-		}
-
-		spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+		changeLanguageButton.setOnClickListener(new View.OnClickListener(){
 			@Override
-			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
-//				mergeAdapter=new MergeRecyclerAdapter();
-//				mergeAdapter.addAdapter(new SingleViewRecyclerAdapter(headerView));
+			public void onClick(View view){
+				new M3AlertDialogBuilder(getActivity())
+						.setTitle(getString(R.string.language))
+						.setItems(langsArray, new DialogInterface.OnClickListener(){
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i){
+								String selectedLanguageDisplay = langsArray[i];
+								String selectedLanguageId = langsIdArray[i];
+								String selectedLanguageCode = languages.get(Integer.valueOf(selectedLanguageId)).getLanguage();
+
+								languageText.setText(selectedLanguageDisplay);
+
+//								Toast.makeText(getActivity(), selectedLanguage + " seçildi", Toast.LENGTH_SHORT).show();
+
+								mergeAdapter.removeAdapter(adapter);
+								filteredData.clear();
+
+								var serversArray = servers.get(selectedLanguageId);
+
+								for (Servers server : serversArray) {
+									headerView.postDelayed(searchDebouncer, 300);
+									CatalogInstance newItem = new CatalogInstance();
+									newItem.normalizedDomain = server.domain.toString();
+									newItem.domain = server.domain.toString();
+									newItem.language = selectedLanguageCode.toString();
+									newItem.recommend = server.recommend;
+									filteredData.add(newItem);
+									if(serversArray.size() == 1){
+										nextButton.setEnabled(true);
+										selectedInstance.setText(server.domain.toString());
+										defaultServerButton.setEnabled(true);
+									}else{
+										nextButton.setEnabled(false);
+										selectedInstance.setText(null);
+										defaultServerButton.setEnabled(false);
+									};
+								};
+								mergeAdapter.addAdapter(adapter);
+							}
+						})
+						.setNegativeButton(R.string.cancel, null)
+						.show();
+			};
+		});
+
+		String finalLocaleLang=localeLang;
+		headerView.post(new Runnable() {
+			@Override
+			public void run() {
 				mergeAdapter.removeAdapter(adapter);
 				filteredData.clear();
-				String selectedValue = adapterView.getItemAtPosition(i).toString();
 
-				String lowerSelectedValue = selectedValue.toLowerCase();
-				var serversArray = servers.get(lowerSelectedValue);
+				int localeLangId = langsCode.indexOf(finalLocaleLang.toString());
+				String selectedLangId = langsId.get(localeLangId);
 
+				languageText.setText(langs.get(localeLangId));
 
+				var serversArray = servers.get(selectedLangId);
 
 				for (Servers server : serversArray) {
 					headerView.postDelayed(searchDebouncer, 300);
 					CatalogInstance newItem = new CatalogInstance();
 					newItem.normalizedDomain = server.domain.toString();
 					newItem.domain = server.domain.toString();
-					newItem.language = selectedValue.toUpperCase();
+					newItem.language =langsCode.get(localeLangId);
 					newItem.recommend = server.recommend;
 					filteredData.add(newItem);
 					if(serversArray.size() == 1){
@@ -213,20 +293,16 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 						defaultServerButton.setEnabled(true);
 					}else{
 						nextButton.setEnabled(false);
-						selectedInstance.setText("");
+						selectedInstance.setText(null);
 						defaultServerButton.setEnabled(false);
 					};
 				};
 				mergeAdapter.addAdapter(adapter);
 			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> adapterView){
-			}
 		});
 
 		return mergeAdapter;
-	}
+	};
 
 
 	private class InstancesAdapter extends UsableRecyclerView.Adapter<InstanceViewHolder> {
@@ -305,7 +381,7 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 				userCount.setVisibility(View.GONE);
 				lang.setVisibility(View.GONE);
 			} else {
-				userCount.setVisibility(View.VISIBLE);
+//				userCount.setVisibility(View.VISIBLE);
 				lang.setVisibility(View.VISIBLE);
 				userCount.setText(UiUtils.abbreviateNumber(item.totalUsers));
 				lang.setText(item.language.toUpperCase());
@@ -313,7 +389,6 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 			System.out.println(item);
 			if(item.recommend){
 				recommend.setVisibility(View.VISIBLE);
-				recommend.setText("Önerilen");
 			};
 		};
 

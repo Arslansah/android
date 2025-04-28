@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="selected_instance">الخادم المحدد</string>
+	<string name="select_instance_language">حدد لغة الخادم</string>
+	<string name="selected_instance_language">لغة الخادم</string>
+	<string name="recommended">الموصى بها</string>
+</resources>

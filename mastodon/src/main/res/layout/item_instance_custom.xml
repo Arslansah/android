@@ -75,6 +75,7 @@
 				android:textAppearance="@style/m3_body_medium"
 				android:textColor="?android:textColorSecondary"
 				android:textSize="14sp"
+				android:visibility="gone"
 				tools:text="General-purpose server run by the lead developer of Mastodon"/>
 
 			<TextView
@@ -88,15 +89,15 @@
 				android:drawableStart="@drawable/ic_fluent_people_community_16_regular"
 				android:drawableTint="?android:textColorSecondary"
 				android:drawablePadding="8dp"
+				android:visibility="gone"
 				tools:text="588.8K"/>
 
 			<TextView
 				android:id="@+id/lang"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_toEndOf="@id/user_count"
-				android:layout_below="@id/description"
-				android:layout_marginStart="24dp"
+				android:layout_alignParentStart="true"
+				android:layout_below="@id/title"
 				android:textAppearance="@style/m3_label_medium"
 				android:textColor="?android:textColorSecondary"
 				android:drawableStart="@drawable/ic_fluent_local_language_16_regular"

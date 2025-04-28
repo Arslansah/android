@@ -10,11 +10,46 @@
 
 	<TextView
 		style="@style/m3_headline_small"
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="16dp"
-		android:layout_marginVertical="12dp"
+		android:layout_marginVertical="2dp"
 		android:text="@string/sk_welcome_title" />
+
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:clipToPadding="true"
+		android:paddingVertical="1dp"
+		android:paddingHorizontal="16dp">
+
+		<TextView
+			android:id="@+id/instance_language_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
+			android:text="@string/selected_instance_language"/>
+
+		<TextView
+			android:id="@+id/instance_select_language"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginHorizontal="4dp"
+			android:layout_toEndOf="@id/instance_language_title"/>
+
+		<Button
+			android:id="@+id/instance_select_language_button"
+			style="@style/Widget.Mastodon.M3.Button.Filled"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/select_instance_language"
+			android:layout_below="@id/instance_language_title"
+			android:layout_centerHorizontal="true"/>
+
+	</RelativeLayout>
+
+
 
 	<View
 		android:layout_width="match_parent"
@@ -22,11 +57,6 @@
 		android:layout_marginTop="16dp"
 		android:background="?attr/colorM3OutlineVariant" />
 
-	<Spinner
-		android:id="@+id/select_lang"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:paddingHorizontal="10dp"/>
 
 	<ViewStub
 		android:layout="?errorViewLayout"

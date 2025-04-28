@@ -733,5 +733,7 @@
 
 <!--	ARSLANŞAH    -->
 	<string name="selected_instance">Selected Instance:</string>
+	<string name="select_instance_language">Select the instance lang</string>
+	<string name="selected_instance_language">Instance Lang:</string>
 	<string name="recommended">Recommended</string>
 </resources>

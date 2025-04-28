@@ -9,7 +9,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:background="?colorM3SurfaceVariant">
 
-	<include layout="@layout/appkit_toolbar"/>
+<!--	<include layout="@layout/appkit_toolbar"/>-->
 
 	<FrameLayout
 		android:id="@+id/appkit_loader_content"

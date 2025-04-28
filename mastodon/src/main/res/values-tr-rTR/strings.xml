@@ -680,5 +680,9 @@ Ne kadar çok kişiyi takip ederseniz, o kadar aktif ve ilginç olacaktır.</str
 	<string name="handle_explanation_own">Tanıtıcılar bir kişinin kim olduğunu ve nerede olduğunu söylediği için, &lt;a&gt;ActivityPub destekli platformların&lt;/a&gt; sosyal ağındaki insanlarla etkileşime geçebilirsiniz.</string>
 	<string name="selected_instance">Seçilen Sunucu:</string>
 	<string name="recommended">Önerilen</string>
+	<string name="select_instance_language">Sunucu Dili Seçin</string>
+	<string name="selected_instance_language">Sunucu Dili:</string>
 	<!-- Shown on a button that saves a file, after it was successfully saved -->
+
+
 </resources>
