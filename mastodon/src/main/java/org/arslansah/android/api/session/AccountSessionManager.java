@@ -242,7 +242,7 @@ public class AccountSessionManager{
 		}
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
 			NotificationManager nm=MastodonApp.context.getSystemService(NotificationManager.class);
-			nm.deleteNotificationChannelGroup(id);
+//			nm.deleteNotificationChannelGroup(id); // ars-bug#1.1
 		}
 		maybeUpdateShortcuts();
 	}
