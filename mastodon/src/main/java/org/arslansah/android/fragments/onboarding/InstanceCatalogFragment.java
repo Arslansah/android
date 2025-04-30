@@ -114,12 +114,6 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 
 	protected void onSearchChangedDebounced(){
 		currentSearchQuery=getString(R.string.mo_app_url);
-		System.out.println(9.0);
-		System.out.println(loadingInstanceDomain);
-//		currentSearchQuery=searchEdit.getText().toString().toLowerCase().trim();
-//		currentSearchQueryButWithCasePreserved=searchEdit.getText().toString().trim();
-//		updateFilteredList();
-//		loadInstanceInfo(getCurrentSearchQuery(), false);
 	}
 
 	protected List<CatalogInstance> sortInstances(List<CatalogInstance> result){
@@ -140,8 +134,6 @@ abstract class InstanceCatalogFragment extends MastodonRecyclerFragment<CatalogI
 	}
 
 	protected String getCurrentSearchQuery(){
-		System.out.println(9.0);
-		System.out.println(currentSearchQuery.toString());
 		String[] parts=currentSearchQuery.split("@");
 		return parts.length>0 ? parts[parts.length-1] : "";
 	}

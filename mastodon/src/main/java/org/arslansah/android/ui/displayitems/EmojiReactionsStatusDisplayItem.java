@@ -119,41 +119,22 @@ public class EmojiReactionsStatusDisplayItem extends StatusDisplayItem {
 		setActionProgressVisible(vh, true);
 		boolean ak=parentFragment.isInstanceAkkoma();
 		boolean keepSpinning=delete && count == 1;
-		if(forAnnouncement){
-			MastodonAPIRequest<Object> req=delete
-					? new DeleteAnnouncementReaction(status.id, name)
-					: new AddAnnouncementReaction(status.id, name);
-			return req.setCallback(new Callback<>(){
-				@Override
-				public void onSuccess(Object result){
-					if(!keepSpinning) setActionProgressVisible(vh, false);
-					cb.accept(null);
-				}
-				@Override
-				public void onError(ErrorResponse error){
-					setActionProgressVisible(vh, false);
-					error.showToast(parentFragment.getContext());
-					if(err!=null) err.run();
-				}
-			});
-		}else{
-			MastodonAPIRequest<Status> req=delete
-					? (ak ? new PleromaDeleteStatusReaction(status.id, name) : new DeleteStatusReaction(status.id, name))
-					: (ak ? new PleromaAddStatusReaction(status.id, name) : new AddStatusReaction(status.id, name));
-			return req.setCallback(new Callback<>(){
-				@Override
-				public void onSuccess(Status result){
-					if(!keepSpinning) setActionProgressVisible(vh, false);
-					cb.accept(result);
-				}
-				@Override
-				public void onError(ErrorResponse error){
-					setActionProgressVisible(vh, false);
-					error.showToast(parentFragment.getContext());
-					if(err!=null) err.run();
-				}
-			});
-		}
+		MastodonAPIRequest<Status> req=delete
+				? (ak ? new PleromaDeleteStatusReaction(status.id, name) : new DeleteStatusReaction(status.id, name))
+				: (ak ? new PleromaAddStatusReaction(status.id, name) : new AddStatusReaction(status.id, name));
+		return req.setCallback(new Callback<>(){
+			@Override
+			public void onSuccess(Status result){
+				if(!keepSpinning) setActionProgressVisible(vh, false);
+				cb.accept(result);
+			}
+			@Override
+			public void onError(ErrorResponse error){
+				setActionProgressVisible(vh, false);
+				error.showToast(parentFragment.getContext());
+				if(err!=null) err.run();
+			}
+		});
 	}
 
 	public static class Holder extends StatusDisplayItem.Holder<EmojiReactionsStatusDisplayItem> implements ImageLoaderViewHolder, CustomEmojiPopupKeyboard.Listener {

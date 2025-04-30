@@ -180,11 +180,7 @@ public class AccountActivationFragment extends ToolbarFragment{
 
 						mgr.addAccount(mgr.getInstanceInfo(session.domain), session.token, result, session.app, null);
 						String newID=mgr.getLastActiveAccountID();
-
-						System.out.println(accountID);
 						accountID=newID;
-						System.out.println(accountID);
-
 						if((session.self.avatar!=null || session.self.displayName!=null) && !getArguments().getBoolean("debug")){
 							new UpdateAccountCredentials(session.self.displayName, "", (File)null, null, Collections.emptyList())
 									.setCallback(new Callback<>(){

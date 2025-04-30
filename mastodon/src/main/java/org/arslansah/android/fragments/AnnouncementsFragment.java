@@ -55,7 +55,6 @@ public class AnnouncementsFragment extends BaseStatusListFragment<Announcement> 
 		List<StatusDisplayItem> items=new ArrayList<>();
 		items.add(HeaderStatusDisplayItem.fromAnnouncement(a, fakeStatus, instanceUser, this, accountID, this::onMarkAsRead));
 		items.add(textItem);
-		if(!isInstanceAkkoma() && !isInstanceIceshrimp()) items.add(new EmojiReactionsStatusDisplayItem(a.id, this, fakeStatus, accountID, false, true));
 		return items;
 	}
 

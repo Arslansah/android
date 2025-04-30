@@ -53,7 +53,6 @@ public class Announcement extends BaseModel implements DisplayItemsParent {
 	public Status toStatus(boolean isIceshrimp) {
         Status s=Status.ofFake(id, content, publishedAt);
 		s.createdAt=startsAt != null ? startsAt : publishedAt;
-		s.reactions=reactions;
         if(updatedAt != null && (!isIceshrimp || !updatedAt.equals(publishedAt))) s.editedAt=updatedAt;
         return s;
     }

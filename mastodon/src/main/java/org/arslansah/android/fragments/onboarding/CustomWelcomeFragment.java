@@ -313,7 +313,6 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 		@NonNull
 		@Override
 		public InstanceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-			System.out.println(3.0);
 			return new InstanceViewHolder();
 		}
 
@@ -322,16 +321,11 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 
 			holder.bind(filteredData.get(position));
 			chosenInstance = filteredData.get(position);
-			System.out.println(2.1);
-			System.out.println(position);
-			System.out.println(chosenInstance);
-//			if (chosenInstance != fakeInstance) nextButton.setEnabled(true);
 			super.onBindViewHolder(holder, position);
 		}
 
 		@Override
 		public int getItemCount(){
-			System.out.println(3.2);
 			return filteredData.size();
 		}
 
@@ -375,7 +369,6 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 		@Override
 		public void onBind(CatalogInstance item){
 			title.setText(item.normalizedDomain);
-			System.out.println(title.getText());
 			description.setText(item.description);
 			if (item == fakeInstance) {
 				userCount.setVisibility(View.GONE);
@@ -386,7 +379,6 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 				userCount.setText(UiUtils.abbreviateNumber(item.totalUsers));
 				lang.setText(item.language.toUpperCase());
 			}
-			System.out.println(item);
 			if(item.recommend){
 				recommend.setVisibility(View.VISIBLE);
 			};
