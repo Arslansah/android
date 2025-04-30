@@ -449,8 +449,8 @@ public class PhotoViewer implements ZoomPanView.Listener{
 	 * @param y
 	 */
 	public void offsetView(float x, float y){
-		pager.setTranslationX(pager.getTranslationX()+x);
-		pager.setTranslationY(pager.getTranslationY()+y);
+//		pager.setTranslationX(pager.getTranslationX()+x);
+//		pager.setTranslationY(pager.getTranslationY()+y);
 	}
 
 	private void incKeepScreenOn(){
