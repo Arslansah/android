@@ -11,7 +11,7 @@
 	<string name="mo_settings_contribute">Moshidon\'a katkıda bulun</string>
 	<string name="mo_update_available">Moshidon %s indirilmeye hazır.</string>
 	<string name="mo_update_ready">Moshidon %s indirildi ve yüklenmeye hazır.</string>
-    <string name="mo_color_palette_nord">Nord</string>
+	<string name="mo_color_palette_nord">Nord</string>
 	<string name="mo_disable_reminder_to_add_alt_text">Fotoğraflara açıklama yazısı ekleme hatırlatıcısını devre dışı bırak</string>
 	<string name="mo_filtered">Filtrelenen: %s</string>
 	<string name="mo_settings_remove_tracking_params_summary">Bağlantılardan izleme bilgilerini çıkarın</string>
